@@ -1,0 +1,69 @@
+{
+    "type": "object",
+    "properties": {
+        "Action": {
+            "required": true,
+            "type": "string"
+        },
+        "Version": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "Represents the input of a ListPipelineExecutions action.",
+            "properties": {
+                "maxResults": {
+                    "description": "The maximum number of results to return in a single call. To retrieve the remaining results, make another call with the returned nextToken value. The available pipeline execution history is limited to the most recent 12 months, based on pipeline execution start times. Default value is 100.",
+                    "maximum": 100,
+                    "minimum": 1,
+                    "type": "integer"
+                },
+                "nextToken": {
+                    "description": "The token that was returned from the previous ListPipelineExecutions call, which can be used to return the next set of pipeline executions in the list.",
+                    "maxLength": 2048,
+                    "minLength": 1,
+                    "type": "string"
+                },
+                "pipelineName": {
+                    "description": "The name of the pipeline for which you want to get execution summary information.",
+                    "maxLength": 100,
+                    "minLength": 1,
+                    "pattern": "[A-Za-z0-9.@\\-_]+",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "pipelineName"
+            ],
+            "type": "object"
+        },
+        "X_Amz_Content_Sha256": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Date": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Algorithm": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Credential": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Security_Token": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Signature": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_SignedHeaders": {
+            "required": false,
+            "type": "string"
+        }
+    }
+}

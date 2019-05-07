@@ -1,0 +1,380 @@
+{
+    "type": "object",
+    "properties": {
+        "Action": {
+            "required": true,
+            "type": "string"
+        },
+        "Version": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "Represents the input of an UpdatePipeline action.",
+            "properties": {
+                "pipeline": {
+                    "description": "The name of the pipeline to be updated.",
+                    "properties": {
+                        "artifactStore": {
+                            "description": "Represents information about the Amazon S3 bucket where artifacts are stored for the pipeline. ",
+                            "properties": {
+                                "encryptionKey": {
+                                    "description": "The encryption key used to encrypt the data in the artifact store, such as an AWS Key Management Service (AWS KMS) key. If this is undefined, the default key for Amazon S3 is used.",
+                                    "properties": {
+                                        "id": {
+                                            "description": "The ID used to identify the key. For an AWS KMS key, this is the key ID or key ARN.",
+                                            "maxLength": 100,
+                                            "minLength": 1,
+                                            "type": "string"
+                                        },
+                                        "type": {
+                                            "description": "The type of encryption key, such as an AWS Key Management Service (AWS KMS) key. When creating or updating a pipeline, the value must be set to 'KMS'.",
+                                            "enum": [
+                                                "KMS"
+                                            ],
+                                            "type": "string"
+                                        }
+                                    },
+                                    "required": [
+                                        "id",
+                                        "type"
+                                    ],
+                                    "type": "object"
+                                },
+                                "location": {
+                                    "description": "The Amazon S3 bucket used for storing the artifacts for a pipeline. You can specify the name of an S3 bucket but not a folder within the bucket. A folder to contain the pipeline artifacts is created for you based on the name of the pipeline. You can use any Amazon S3 bucket in the same AWS Region as the pipeline to store your pipeline artifacts.",
+                                    "maxLength": 63,
+                                    "minLength": 3,
+                                    "pattern": "[a-zA-Z0-9\\-\\.]+",
+                                    "type": "string"
+                                },
+                                "type": {
+                                    "description": "The type of the artifact store, such as S3.",
+                                    "enum": [
+                                        "S3"
+                                    ],
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "type",
+                                "location"
+                            ],
+                            "type": "object"
+                        },
+                        "artifactStores": {
+                            "description": "<p>A mapping of artifactStore objects and their corresponding regions. There must be an artifact store for the pipeline region and for each cross-region action within the pipeline. You can only use either artifactStore or artifactStores, not both.</p> <p>If you create a cross-region action in your pipeline, you must use artifactStores.</p>",
+                            "items": {
+                                "properties": {
+                                    "key": {
+                                        "maxLength": 30,
+                                        "minLength": 4,
+                                        "type": "string"
+                                    },
+                                    "value": {
+                                        "description": "The Amazon S3 bucket where artifacts are stored for the pipeline.",
+                                        "properties": {
+                                            "encryptionKey": {
+                                                "description": "The encryption key used to encrypt the data in the artifact store, such as an AWS Key Management Service (AWS KMS) key. If this is undefined, the default key for Amazon S3 is used.",
+                                                "properties": {
+                                                    "id": {
+                                                        "description": "The ID used to identify the key. For an AWS KMS key, this is the key ID or key ARN.",
+                                                        "maxLength": 100,
+                                                        "minLength": 1,
+                                                        "type": "string"
+                                                    },
+                                                    "type": {
+                                                        "description": "The type of encryption key, such as an AWS Key Management Service (AWS KMS) key. When creating or updating a pipeline, the value must be set to 'KMS'.",
+                                                        "enum": [
+                                                            "KMS"
+                                                        ],
+                                                        "type": "string"
+                                                    }
+                                                },
+                                                "required": [
+                                                    "id",
+                                                    "type"
+                                                ],
+                                                "type": "object"
+                                            },
+                                            "location": {
+                                                "description": "The Amazon S3 bucket used for storing the artifacts for a pipeline. You can specify the name of an S3 bucket but not a folder within the bucket. A folder to contain the pipeline artifacts is created for you based on the name of the pipeline. You can use any Amazon S3 bucket in the same AWS Region as the pipeline to store your pipeline artifacts.",
+                                                "maxLength": 63,
+                                                "minLength": 3,
+                                                "pattern": "[a-zA-Z0-9\\-\\.]+",
+                                                "type": "string"
+                                            },
+                                            "type": {
+                                                "description": "The type of the artifact store, such as S3.",
+                                                "enum": [
+                                                    "S3"
+                                                ],
+                                                "type": "string"
+                                            }
+                                        },
+                                        "required": [
+                                            "type",
+                                            "location"
+                                        ],
+                                        "type": "object"
+                                    }
+                                },
+                                "type": "object"
+                            },
+                            "type": "array"
+                        },
+                        "name": {
+                            "description": "The name of the action to be performed.",
+                            "maxLength": 100,
+                            "minLength": 1,
+                            "pattern": "[A-Za-z0-9.@\\-_]+",
+                            "type": "string"
+                        },
+                        "roleArn": {
+                            "description": "The Amazon Resource Name (ARN) for AWS CodePipeline to use to either perform actions with no actionRoleArn, or to use to assume roles for actions with an actionRoleArn.",
+                            "maxLength": 1024,
+                            "pattern": "arn:aws(-[\\w]+)*:iam::[0-9]{12}:role/.*",
+                            "type": "string"
+                        },
+                        "stages": {
+                            "description": "The stage in which to perform the action.",
+                            "items": {
+                                "description": "Represents information about a stage and its definition.",
+                                "properties": {
+                                    "actions": {
+                                        "description": "The actions included in a stage.",
+                                        "items": {
+                                            "description": "Represents information about an action declaration.",
+                                            "properties": {
+                                                "actionTypeId": {
+                                                    "description": "The configuration information for the action type.",
+                                                    "properties": {
+                                                        "category": {
+                                                            "description": "A category defines what kind of action can be taken in the stage, and constrains the provider type for the action. Valid categories are limited to one of the values below.",
+                                                            "enum": [
+                                                                "Source",
+                                                                "Build",
+                                                                "Deploy",
+                                                                "Test",
+                                                                "Invoke",
+                                                                "Approval"
+                                                            ],
+                                                            "type": "string"
+                                                        },
+                                                        "owner": {
+                                                            "description": "The creator of the action being called.",
+                                                            "enum": [
+                                                                "AWS",
+                                                                "ThirdParty",
+                                                                "Custom"
+                                                            ],
+                                                            "type": "string"
+                                                        },
+                                                        "provider": {
+                                                            "description": "The provider of the service being called by the action. Valid providers are determined by the action category. For example, an action in the Deploy category type might have a provider of AWS CodeDeploy, which would be specified as CodeDeploy.",
+                                                            "maxLength": 25,
+                                                            "minLength": 1,
+                                                            "pattern": "[0-9A-Za-z_-]+",
+                                                            "type": "string"
+                                                        },
+                                                        "version": {
+                                                            "description": "A string that describes the action version.",
+                                                            "maxLength": 9,
+                                                            "minLength": 1,
+                                                            "pattern": "[0-9A-Za-z_-]+",
+                                                            "type": "string"
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "category",
+                                                        "owner",
+                                                        "provider",
+                                                        "version"
+                                                    ],
+                                                    "type": "object"
+                                                },
+                                                "configuration": {
+                                                    "description": "The action declaration's configuration.",
+                                                    "items": {
+                                                        "properties": {
+                                                            "key": {
+                                                                "maxLength": 50,
+                                                                "minLength": 1,
+                                                                "type": "string"
+                                                            },
+                                                            "value": {
+                                                                "maxLength": 1000,
+                                                                "minLength": 1,
+                                                                "type": "string"
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    },
+                                                    "type": "array"
+                                                },
+                                                "inputArtifacts": {
+                                                    "description": "The name or ID of the artifact consumed by the action, such as a test or build artifact.",
+                                                    "items": {
+                                                        "description": "Represents information about an artifact to be worked on, such as a test or build artifact.",
+                                                        "properties": {
+                                                            "name": {
+                                                                "description": "<p>The name of the artifact to be worked on, for example, \"My App\".</p> <p>The input artifact of an action must exactly match the output artifact declared in a preceding action, but the input artifact does not have to be the next action in strict sequence from the action that provided the output artifact. Actions in parallel can declare different output artifacts, which are in turn consumed by different following actions.</p>",
+                                                                "maxLength": 100,
+                                                                "minLength": 1,
+                                                                "pattern": "[a-zA-Z0-9_\\-]+",
+                                                                "type": "string"
+                                                            }
+                                                        },
+                                                        "required": [
+                                                            "name"
+                                                        ],
+                                                        "type": "object"
+                                                    },
+                                                    "type": "array"
+                                                },
+                                                "name": {
+                                                    "description": "The action declaration's name.",
+                                                    "maxLength": 100,
+                                                    "minLength": 1,
+                                                    "pattern": "[A-Za-z0-9.@\\-_]+",
+                                                    "type": "string"
+                                                },
+                                                "outputArtifacts": {
+                                                    "description": "The name or ID of the result of the action declaration, such as a test or build artifact.",
+                                                    "items": {
+                                                        "description": "Represents information about the output of an action.",
+                                                        "properties": {
+                                                            "name": {
+                                                                "description": "<p>The name of the output of an artifact, such as \"My App\".</p> <p>The input artifact of an action must exactly match the output artifact declared in a preceding action, but the input artifact does not have to be the next action in strict sequence from the action that provided the output artifact. Actions in parallel can declare different output artifacts, which are in turn consumed by different following actions.</p> <p>Output artifact names must be unique within a pipeline.</p>",
+                                                                "maxLength": 100,
+                                                                "minLength": 1,
+                                                                "pattern": "[a-zA-Z0-9_\\-]+",
+                                                                "type": "string"
+                                                            }
+                                                        },
+                                                        "required": [
+                                                            "name"
+                                                        ],
+                                                        "type": "object"
+                                                    },
+                                                    "type": "array"
+                                                },
+                                                "region": {
+                                                    "description": "The action declaration's AWS Region, such as us-east-1.",
+                                                    "maxLength": 30,
+                                                    "minLength": 4,
+                                                    "type": "string"
+                                                },
+                                                "roleArn": {
+                                                    "description": "The ARN of the IAM service role that will perform the declared action. This is assumed through the roleArn for the pipeline.",
+                                                    "maxLength": 1024,
+                                                    "pattern": "arn:aws(-[\\w]+)*:iam::[0-9]{12}:role/.*",
+                                                    "type": "string"
+                                                },
+                                                "runOrder": {
+                                                    "description": "The order in which actions are run.",
+                                                    "maximum": 999,
+                                                    "minimum": 1,
+                                                    "type": "integer"
+                                                }
+                                            },
+                                            "required": [
+                                                "name",
+                                                "actionTypeId"
+                                            ],
+                                            "type": "object"
+                                        },
+                                        "type": "array"
+                                    },
+                                    "blockers": {
+                                        "description": "Reserved for future use.",
+                                        "items": {
+                                            "description": "Reserved for future use.",
+                                            "properties": {
+                                                "name": {
+                                                    "description": "Reserved for future use.",
+                                                    "maxLength": 100,
+                                                    "minLength": 1,
+                                                    "type": "string"
+                                                },
+                                                "type": {
+                                                    "description": "Reserved for future use.",
+                                                    "enum": [
+                                                        "Schedule"
+                                                    ],
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "required": [
+                                                "name",
+                                                "type"
+                                            ],
+                                            "type": "object"
+                                        },
+                                        "type": "array"
+                                    },
+                                    "name": {
+                                        "description": "The name of the stage.",
+                                        "maxLength": 100,
+                                        "minLength": 1,
+                                        "pattern": "[A-Za-z0-9.@\\-_]+",
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "name",
+                                    "actions"
+                                ],
+                                "type": "object"
+                            },
+                            "type": "array"
+                        },
+                        "version": {
+                            "description": "The version number of the pipeline. A new pipeline always has a version number of 1. This number is automatically incremented when a pipeline is updated.",
+                            "minimum": 1,
+                            "type": "integer"
+                        }
+                    },
+                    "required": [
+                        "name",
+                        "roleArn",
+                        "stages"
+                    ],
+                    "type": "object"
+                }
+            },
+            "required": [
+                "pipeline"
+            ],
+            "type": "object"
+        },
+        "X_Amz_Content_Sha256": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Date": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Algorithm": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Credential": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Security_Token": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Signature": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_SignedHeaders": {
+            "required": false,
+            "type": "string"
+        }
+    }
+}

@@ -1,0 +1,90 @@
+{
+    "type": "object",
+    "properties": {
+        "Action": {
+            "required": true,
+            "type": "string"
+        },
+        "Version": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "Represents the input of a PutJobFailureResult action.",
+            "properties": {
+                "failureDetails": {
+                    "description": "The details about the failure of a job.",
+                    "properties": {
+                        "externalExecutionId": {
+                            "description": "The external ID of the run of the action that failed.",
+                            "maxLength": 1500,
+                            "minLength": 1,
+                            "type": "string"
+                        },
+                        "message": {
+                            "description": "The message about the failure.",
+                            "maxLength": 5000,
+                            "minLength": 1,
+                            "type": "string"
+                        },
+                        "type": {
+                            "description": "The type of the failure.",
+                            "enum": [
+                                "JobFailed",
+                                "ConfigurationError",
+                                "PermissionError",
+                                "RevisionOutOfSync",
+                                "RevisionUnavailable",
+                                "SystemUnavailable"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "type",
+                        "message"
+                    ],
+                    "type": "object"
+                },
+                "jobId": {
+                    "description": "The unique system-generated ID of the job that failed. This is the same ID returned from PollForJobs.",
+                    "pattern": "[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "jobId",
+                "failureDetails"
+            ],
+            "type": "object"
+        },
+        "X_Amz_Content_Sha256": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Date": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Algorithm": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Credential": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Security_Token": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Signature": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_SignedHeaders": {
+            "required": false,
+            "type": "string"
+        }
+    }
+}

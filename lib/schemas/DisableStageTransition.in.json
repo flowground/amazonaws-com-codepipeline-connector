@@ -1,0 +1,82 @@
+{
+    "type": "object",
+    "properties": {
+        "Action": {
+            "required": true,
+            "type": "string"
+        },
+        "Version": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "Represents the input of a DisableStageTransition action.",
+            "properties": {
+                "pipelineName": {
+                    "description": "The name of the pipeline in which you want to disable the flow of artifacts from one stage to another.",
+                    "maxLength": 100,
+                    "minLength": 1,
+                    "pattern": "[A-Za-z0-9.@\\-_]+",
+                    "type": "string"
+                },
+                "reason": {
+                    "description": "The reason given to the user why a stage is disabled, such as waiting for manual approval or manual tests. This message is displayed in the pipeline console UI.",
+                    "maxLength": 300,
+                    "minLength": 1,
+                    "pattern": "[a-zA-Z0-9!@ \\(\\)\\.\\*\\?\\-]+",
+                    "type": "string"
+                },
+                "stageName": {
+                    "description": "The name of the stage where you want to disable the inbound or outbound transition of artifacts.",
+                    "maxLength": 100,
+                    "minLength": 1,
+                    "pattern": "[A-Za-z0-9.@\\-_]+",
+                    "type": "string"
+                },
+                "transitionType": {
+                    "description": "Specifies whether artifacts will be prevented from transitioning into the stage and being processed by the actions in that stage (inbound), or prevented from transitioning from the stage after they have been processed by the actions in that stage (outbound).",
+                    "enum": [
+                        "Inbound",
+                        "Outbound"
+                    ],
+                    "type": "string"
+                }
+            },
+            "required": [
+                "pipelineName",
+                "stageName",
+                "transitionType",
+                "reason"
+            ],
+            "type": "object"
+        },
+        "X_Amz_Content_Sha256": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Date": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Algorithm": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Credential": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Security_Token": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Signature": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_SignedHeaders": {
+            "required": false,
+            "type": "string"
+        }
+    }
+}

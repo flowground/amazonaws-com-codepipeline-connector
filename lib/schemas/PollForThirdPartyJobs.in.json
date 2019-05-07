@@ -1,0 +1,102 @@
+{
+    "type": "object",
+    "properties": {
+        "Action": {
+            "required": true,
+            "type": "string"
+        },
+        "Version": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "Represents the input of a PollForThirdPartyJobs action.",
+            "properties": {
+                "actionTypeId": {
+                    "description": "Represents information about an action type.",
+                    "properties": {
+                        "category": {
+                            "description": "A category defines what kind of action can be taken in the stage, and constrains the provider type for the action. Valid categories are limited to one of the values below.",
+                            "enum": [
+                                "Source",
+                                "Build",
+                                "Deploy",
+                                "Test",
+                                "Invoke",
+                                "Approval"
+                            ],
+                            "type": "string"
+                        },
+                        "owner": {
+                            "description": "The creator of the action being called.",
+                            "enum": [
+                                "AWS",
+                                "ThirdParty",
+                                "Custom"
+                            ],
+                            "type": "string"
+                        },
+                        "provider": {
+                            "description": "The provider of the service being called by the action. Valid providers are determined by the action category. For example, an action in the Deploy category type might have a provider of AWS CodeDeploy, which would be specified as CodeDeploy.",
+                            "maxLength": 25,
+                            "minLength": 1,
+                            "pattern": "[0-9A-Za-z_-]+",
+                            "type": "string"
+                        },
+                        "version": {
+                            "description": "A string that describes the action version.",
+                            "maxLength": 9,
+                            "minLength": 1,
+                            "pattern": "[0-9A-Za-z_-]+",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "category",
+                        "owner",
+                        "provider",
+                        "version"
+                    ],
+                    "type": "object"
+                },
+                "maxBatchSize": {
+                    "description": "The maximum number of jobs to return in a poll for jobs call.",
+                    "minimum": 1,
+                    "type": "integer"
+                }
+            },
+            "required": [
+                "actionTypeId"
+            ],
+            "type": "object"
+        },
+        "X_Amz_Content_Sha256": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Date": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Algorithm": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Credential": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Security_Token": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Signature": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_SignedHeaders": {
+            "required": false,
+            "type": "string"
+        }
+    }
+}

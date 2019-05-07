@@ -1,0 +1,74 @@
+{
+    "type": "object",
+    "properties": {
+        "Action": {
+            "required": true,
+            "type": "string"
+        },
+        "Version": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "Represents the input of an EnableStageTransition action.",
+            "properties": {
+                "pipelineName": {
+                    "description": "The name of the pipeline in which you want to enable the flow of artifacts from one stage to another.",
+                    "maxLength": 100,
+                    "minLength": 1,
+                    "pattern": "[A-Za-z0-9.@\\-_]+",
+                    "type": "string"
+                },
+                "stageName": {
+                    "description": "The name of the stage where you want to enable the transition of artifacts, either into the stage (inbound) or from that stage to the next stage (outbound).",
+                    "maxLength": 100,
+                    "minLength": 1,
+                    "pattern": "[A-Za-z0-9.@\\-_]+",
+                    "type": "string"
+                },
+                "transitionType": {
+                    "description": "Specifies whether artifacts will be allowed to enter the stage and be processed by the actions in that stage (inbound) or whether already-processed artifacts will be allowed to transition to the next stage (outbound).",
+                    "enum": [
+                        "Inbound",
+                        "Outbound"
+                    ],
+                    "type": "string"
+                }
+            },
+            "required": [
+                "pipelineName",
+                "stageName",
+                "transitionType"
+            ],
+            "type": "object"
+        },
+        "X_Amz_Content_Sha256": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Date": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Algorithm": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Credential": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Security_Token": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Signature": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_SignedHeaders": {
+            "required": false,
+            "type": "string"
+        }
+    }
+}
