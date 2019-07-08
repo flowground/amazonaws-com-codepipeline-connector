@@ -1,6 +1,6 @@
 {
     "title": "AWS CodePipeline",
-    "description": "<fullname>AWS CodePipeline</fullname> <p> <b>Overview</b> </p> <p>This is the AWS CodePipeline API Reference. This guide provides descriptions of the actions and data types for AWS CodePipeline. Some functionality for your pipeline is only configurable through the API. For additional information, see the <a href=\"http://docs.aws.amazon.com/codepipeline/latest/userguide/welcome.html\">AWS CodePipeline User Guide</a>.</p> <p>You can use the AWS CodePipeline API to work with pipelines, stages, actions, and transitions, as described below.</p> <p> <i>Pipelines</i> are models of automated release processes. Each pipeline is uniquely named, and consists of stages, actions, and transitions. </p> <p>You can work with pipelines by calling:</p> <ul> <li> <p> <a>CreatePipeline</a>, which creates a uniquely-named pipeline.</p> </li> <li> <p> <a>DeletePipeline</a>, which deletes the specified pipeline.</p> </li> <li> <p> <a>GetPipeline</a>, which returns information about the pipeline structure and pipeline metadata, including the pipeline Amazon Resource Name (ARN).</p> </li> <li> <p> <a>GetPipelineExecution</a>, which returns information about a specific execution of a pipeline.</p> </li> <li> <p> <a>GetPipelineState</a>, which returns information about the current state of the stages and actions of a pipeline.</p> </li> <li> <p> <a>ListPipelines</a>, which gets a summary of all of the pipelines associated with your account.</p> </li> <li> <p> <a>ListPipelineExecutions</a>, which gets a summary of the most recent executions for a pipeline.</p> </li> <li> <p> <a>StartPipelineExecution</a>, which runs the the most recent revision of an artifact through the pipeline.</p> </li> <li> <p> <a>UpdatePipeline</a>, which updates a pipeline with edits or changes to the structure of the pipeline.</p> </li> </ul> <p>Pipelines include <i>stages</i>. Each stage contains one or more actions that must complete before the next stage begins. A stage will result in success or failure. If a stage fails, then the pipeline stops at that stage and will remain stopped until either a new version of an artifact appears in the source location, or a user takes action to re-run the most recent artifact through the pipeline. You can call <a>GetPipelineState</a>, which displays the status of a pipeline, including the status of stages in the pipeline, or <a>GetPipeline</a>, which returns the entire structure of the pipeline, including the stages of that pipeline. For more information about the structure of stages and actions, also refer to the <a href=\"http://docs.aws.amazon.com/codepipeline/latest/userguide/pipeline-structure.html\">AWS CodePipeline Pipeline Structure Reference</a>.</p> <p>Pipeline stages include <i>actions</i>, which are categorized into categories such as source or build actions performed within a stage of a pipeline. For example, you can use a source action to import artifacts into a pipeline from a source such as Amazon S3. Like stages, you do not work with actions directly in most cases, but you do define and interact with actions when working with pipeline operations such as <a>CreatePipeline</a> and <a>GetPipelineState</a>. Valid action categories are:</p> <ul> <li> <p>Source</p> </li> <li> <p>Build</p> </li> <li> <p>Test</p> </li> <li> <p>Deploy</p> </li> <li> <p>Approval</p> </li> <li> <p>Invoke</p> </li> </ul> <p>Pipelines also include <i>transitions</i>, which allow the transition of artifacts from one stage to the next in a pipeline after the actions in one stage complete.</p> <p>You can work with transitions by calling:</p> <ul> <li> <p> <a>DisableStageTransition</a>, which prevents artifacts from transitioning to the next stage in a pipeline.</p> </li> <li> <p> <a>EnableStageTransition</a>, which enables transition of artifacts between stages in a pipeline. </p> </li> </ul> <p> <b>Using the API to integrate with AWS CodePipeline</b> </p> <p>For third-party integrators or developers who want to create their own integrations with AWS CodePipeline, the expected sequence varies from the standard API user. In order to integrate with AWS CodePipeline, developers will need to work with the following items:</p> <p> <b>Jobs</b>, which are instances of an action. For example, a job for a source action might import a revision of an artifact from a source. </p> <p>You can work with jobs by calling:</p> <ul> <li> <p> <a>AcknowledgeJob</a>, which confirms whether a job worker has received the specified job,</p> </li> <li> <p> <a>GetJobDetails</a>, which returns the details of a job,</p> </li> <li> <p> <a>PollForJobs</a>, which determines whether there are any jobs to act upon, </p> </li> <li> <p> <a>PutJobFailureResult</a>, which provides details of a job failure, and</p> </li> <li> <p> <a>PutJobSuccessResult</a>, which provides details of a job success.</p> </li> </ul> <p> <b>Third party jobs</b>, which are instances of an action created by a partner action and integrated into AWS CodePipeline. Partner actions are created by members of the AWS Partner Network.</p> <p>You can work with third party jobs by calling:</p> <ul> <li> <p> <a>AcknowledgeThirdPartyJob</a>, which confirms whether a job worker has received the specified job,</p> </li> <li> <p> <a>GetThirdPartyJobDetails</a>, which requests the details of a job for a partner action,</p> </li> <li> <p> <a>PollForThirdPartyJobs</a>, which determines whether there are any jobs to act upon, </p> </li> <li> <p> <a>PutThirdPartyJobFailureResult</a>, which provides details of a job failure, and</p> </li> <li> <p> <a>PutThirdPartyJobSuccessResult</a>, which provides details of a job success.</p> </li> </ul>",
+    "description": "AWS CodePipeline  Overview \n\nThis is the AWS CodePipeline API Reference. This guide provides descriptions of\nthe actions and data types for AWS CodePipeline. Some functionality for your\npipeline is only configurable through the API. For additional information, see\nthe AWS CodePipeline User Guide\n[http://docs.aws.amazon.com/codepipeline/latest/userguide/welcome.html].\n\nYou can use the AWS CodePipeline API to work with pipelines, stages, actions,\nand transitions, as described below.\n\n Pipelines are models of automated release processes. Each pipeline is uniquely\nnamed, and consists of stages, actions, and transitions. \n\nYou can work with pipelines by calling:\n\n *   CreatePipeline, which creates a uniquely-named pipeline.\n   \n   \n *   DeletePipeline, which deletes the specified pipeline.\n   \n   \n *   GetPipeline, which returns information about the pipeline structure and\n   pipeline metadata, including the pipeline Amazon Resource Name (ARN).\n   \n   \n *   GetPipelineExecution, which returns information about a specific execution\n   of a pipeline.\n   \n   \n *   GetPipelineState, which returns information about the current state of the\n   stages and actions of a pipeline.\n   \n   \n *   ListPipelines, which gets a summary of all of the pipelines associated with\n   your account.\n   \n   \n *   ListPipelineExecutions, which gets a summary of the most recent executions\n   for a pipeline.\n   \n   \n *   StartPipelineExecution, which runs the the most recent revision of an\n   artifact through the pipeline.\n   \n   \n *   UpdatePipeline, which updates a pipeline with edits or changes to the\n   structure of the pipeline.\n   \n   \n\nPipelines include stages. Each stage contains one or more actions that must\ncomplete before the next stage begins. A stage will result in success or\nfailure. If a stage fails, then the pipeline stops at that stage and will remain\nstopped until either a new version of an artifact appears in the source\nlocation, or a user takes action to re-run the most recent artifact through the\npipeline. You can call GetPipelineState, which displays the status of a\npipeline, including the status of stages in the pipeline, or GetPipeline, which\nreturns the entire structure of the pipeline, including the stages of that\npipeline. For more information about the structure of stages and actions, also\nrefer to the AWS CodePipeline Pipeline Structure Reference\n[http://docs.aws.amazon.com/codepipeline/latest/userguide/pipeline-structure.html]\n.\n\nPipeline stages include actions, which are categorized into categories such as\nsource or build actions performed within a stage of a pipeline. For example, you\ncan use a source action to import artifacts into a pipeline from a source such\nas Amazon S3. Like stages, you do not work with actions directly in most cases,\nbut you do define and interact with actions when working with pipeline\noperations such as CreatePipeline and GetPipelineState. Valid action categories\nare:\n\n *  Source\n   \n   \n *  Build\n   \n   \n *  Test\n   \n   \n *  Deploy\n   \n   \n *  Approval\n   \n   \n *  Invoke\n   \n   \n\nPipelines also include transitions, which allow the transition of artifacts from\none stage to the next in a pipeline after the actions in one stage complete.\n\nYou can work with transitions by calling:\n\n *   DisableStageTransition, which prevents artifacts from transitioning to the\n   next stage in a pipeline.\n   \n   \n *   EnableStageTransition, which enables transition of artifacts between stages\n   in a pipeline. \n   \n   \n\n Using the API to integrate with AWS CodePipeline \n\nFor third-party integrators or developers who want to create their own\nintegrations with AWS CodePipeline, the expected sequence varies from the\nstandard API user. In order to integrate with AWS CodePipeline, developers will\nneed to work with the following items:\n\n Jobs, which are instances of an action. For example, a job for a source action\nmight import a revision of an artifact from a source. \n\nYou can work with jobs by calling:\n\n *   AcknowledgeJob, which confirms whether a job worker has received the\n   specified job,\n   \n   \n *   GetJobDetails, which returns the details of a job,\n   \n   \n *   PollForJobs, which determines whether there are any jobs to act upon, \n   \n   \n *   PutJobFailureResult, which provides details of a job failure, and\n   \n   \n *   PutJobSuccessResult, which provides details of a job success.\n   \n   \n\n Third party jobs, which are instances of an action created by a partner action\nand integrated into AWS CodePipeline. Partner actions are created by members of\nthe AWS Partner Network.\n\nYou can work with third party jobs by calling:\n\n *   AcknowledgeThirdPartyJob, which confirms whether a job worker has received\n   the specified job,\n   \n   \n *   GetThirdPartyJobDetails, which requests the details of a job for a partner\n   action,\n   \n   \n *   PollForThirdPartyJobs, which determines whether there are any jobs to act\n   upon, \n   \n   \n *   PutThirdPartyJobFailureResult, which provides details of a job failure, and\n   \n   \n *   PutThirdPartyJobSuccessResult, which provides details of a job success.",
     "docsUrl": "https://aws.amazon.com/codepipeline/",
     "url": "https://api.apis.guru/v2/specs/amazonaws.com/codepipeline/2015-07-09/swagger.json",
     "envVars": {},
@@ -20,7 +20,7 @@
                 "label": "Custom Server URL",
                 "viewClass": "TextFieldView"
             },
-            "hmac": {
+            "auth_hmac": {
                 "label": "Authorization (hmac)",
                 "viewClass": "TextFieldView",
                 "note": "Amazon Signature authorization v4"
@@ -38,7 +38,7 @@
     "actions": {
         "AcknowledgeJob": {
             "main": "./lib/actions/AcknowledgeJob.js",
-            "title": "Returns information about a specified job and whether that job has been received by the job worker. Only used for custom actions.",
+            "title": "AcknowledgeJob",
             "description": "Returns information about a specified job and whether that job has been received by the job worker. Only used for custom actions.",
             "fields": {
                 "verbose": {
@@ -55,7 +55,7 @@
         },
         "AcknowledgeThirdPartyJob": {
             "main": "./lib/actions/AcknowledgeThirdPartyJob.js",
-            "title": "Confirms a job worker has received the specified job. Only used for partner actions.",
+            "title": "AcknowledgeThirdPartyJob",
             "description": "Confirms a job worker has received the specified job. Only used for partner actions.",
             "fields": {
                 "verbose": {
@@ -72,7 +72,7 @@
         },
         "CreateCustomActionType": {
             "main": "./lib/actions/CreateCustomActionType.js",
-            "title": "Creates a new custom action that can be used in all pipelines associated with the AWS account. Only used for custom actions.",
+            "title": "CreateCustomActionType",
             "description": "Creates a new custom action that can be used in all pipelines associated with the AWS account. Only used for custom actions.",
             "fields": {
                 "verbose": {
@@ -89,7 +89,7 @@
         },
         "CreatePipeline": {
             "main": "./lib/actions/CreatePipeline.js",
-            "title": "Creates a pipeline.",
+            "title": "CreatePipeline",
             "description": "Creates a pipeline.",
             "fields": {
                 "verbose": {
@@ -106,8 +106,8 @@
         },
         "DeleteCustomActionType": {
             "main": "./lib/actions/DeleteCustomActionType.js",
-            "title": "<p>Marks a custom action as deleted. PollForJobs for the custom action will fail after the action is marked for deletion. Only used for custom actions.</p> <important> <p>To re-create a custom action after it has been deleted you must use a string in the version field that has never been used before. This string can be an incremented version number, for example. To restore a deleted custom action, use a JSON file that is identical to the deleted action, including the original string in the version field.</p> </important>",
-            "description": "<p>Marks a custom action as deleted. PollForJobs for the custom action will fail after the action is marked for deletion. Only used for custom actions.</p> <important> <p>To re-create a custom action after it has been deleted you must use a string in the version field that has never been used before. This string can be an incremented version number, for example. To restore a deleted custom action, use a JSON file that is identical to the deleted action, including the original string in the version field.</p> </important>",
+            "title": "DeleteCustomActionType",
+            "description": "Marks a custom action as deleted. PollForJobs for the custom action will fail\nafter the action is marked for deletion. Only used for custom actions.\n\nTo re-create a custom action after it has been deleted you must use a string in\nthe version field that has never been used before. This string can be an\nincremented version number, for example. To restore a deleted custom action, use\na JSON file that is identical to the deleted action, including the original\nstring in the version field.",
             "fields": {
                 "verbose": {
                     "viewClass": "CheckBoxView",
@@ -123,7 +123,7 @@
         },
         "DeletePipeline": {
             "main": "./lib/actions/DeletePipeline.js",
-            "title": "Deletes the specified pipeline.",
+            "title": "DeletePipeline",
             "description": "Deletes the specified pipeline.",
             "fields": {
                 "verbose": {
@@ -140,7 +140,7 @@
         },
         "DeleteWebhook": {
             "main": "./lib/actions/DeleteWebhook.js",
-            "title": "Deletes a previously created webhook by name. Deleting the webhook stops AWS CodePipeline from starting a pipeline every time an external event occurs. The API will return successfully when trying to delete a webhook that is already deleted. If a deleted webhook is re-created by calling PutWebhook with the same name, it will have a different URL.",
+            "title": "DeleteWebhook",
             "description": "Deletes a previously created webhook by name. Deleting the webhook stops AWS CodePipeline from starting a pipeline every time an external event occurs. The API will return successfully when trying to delete a webhook that is already deleted. If a deleted webhook is re-created by calling PutWebhook with the same name, it will have a different URL.",
             "fields": {
                 "verbose": {
@@ -157,7 +157,7 @@
         },
         "DeregisterWebhookWithThirdParty": {
             "main": "./lib/actions/DeregisterWebhookWithThirdParty.js",
-            "title": "Removes the connection between the webhook that was created by CodePipeline and the external tool with events to be detected. Currently only supported for webhooks that target an action type of GitHub.",
+            "title": "DeregisterWebhookWithThirdParty",
             "description": "Removes the connection between the webhook that was created by CodePipeline and the external tool with events to be detected. Currently only supported for webhooks that target an action type of GitHub.",
             "fields": {
                 "verbose": {
@@ -174,7 +174,7 @@
         },
         "DisableStageTransition": {
             "main": "./lib/actions/DisableStageTransition.js",
-            "title": "Prevents artifacts in a pipeline from transitioning to the next stage in the pipeline.",
+            "title": "DisableStageTransition",
             "description": "Prevents artifacts in a pipeline from transitioning to the next stage in the pipeline.",
             "fields": {
                 "verbose": {
@@ -191,7 +191,7 @@
         },
         "EnableStageTransition": {
             "main": "./lib/actions/EnableStageTransition.js",
-            "title": "Enables artifacts in a pipeline to transition to a stage in a pipeline.",
+            "title": "EnableStageTransition",
             "description": "Enables artifacts in a pipeline to transition to a stage in a pipeline.",
             "fields": {
                 "verbose": {
@@ -208,8 +208,8 @@
         },
         "GetJobDetails": {
             "main": "./lib/actions/GetJobDetails.js",
-            "title": "<p>Returns information about a job. Only used for custom actions.</p> <important> <p>When this API is called, AWS CodePipeline returns temporary credentials for the Amazon S3 bucket used to store artifacts for the pipeline, if the action requires access to that Amazon S3 bucket for input or output artifacts. Additionally, this API returns any secret values defined for the action.</p> </important>",
-            "description": "<p>Returns information about a job. Only used for custom actions.</p> <important> <p>When this API is called, AWS CodePipeline returns temporary credentials for the Amazon S3 bucket used to store artifacts for the pipeline, if the action requires access to that Amazon S3 bucket for input or output artifacts. Additionally, this API returns any secret values defined for the action.</p> </important>",
+            "title": "GetJobDetails",
+            "description": "Returns information about a job. Only used for custom actions.\n\nWhen this API is called, AWS CodePipeline returns temporary credentials for the\nAmazon S3 bucket used to store artifacts for the pipeline, if the action\nrequires access to that Amazon S3 bucket for input or output artifacts.\nAdditionally, this API returns any secret values defined for the action.",
             "fields": {
                 "verbose": {
                     "viewClass": "CheckBoxView",
@@ -225,7 +225,7 @@
         },
         "GetPipeline": {
             "main": "./lib/actions/GetPipeline.js",
-            "title": "Returns the metadata, structure, stages, and actions of a pipeline. Can be used to return the entire structure of a pipeline in JSON format, which can then be modified and used to update the pipeline structure with <a>UpdatePipeline</a>.",
+            "title": "GetPipeline",
             "description": "Returns the metadata, structure, stages, and actions of a pipeline. Can be used to return the entire structure of a pipeline in JSON format, which can then be modified and used to update the pipeline structure with <a>UpdatePipeline</a>.",
             "fields": {
                 "verbose": {
@@ -242,7 +242,7 @@
         },
         "GetPipelineExecution": {
             "main": "./lib/actions/GetPipelineExecution.js",
-            "title": "Returns information about an execution of a pipeline, including details about artifacts, the pipeline execution ID, and the name, version, and status of the pipeline.",
+            "title": "GetPipelineExecution",
             "description": "Returns information about an execution of a pipeline, including details about artifacts, the pipeline execution ID, and the name, version, and status of the pipeline.",
             "fields": {
                 "verbose": {
@@ -259,7 +259,7 @@
         },
         "GetPipelineState": {
             "main": "./lib/actions/GetPipelineState.js",
-            "title": "Returns information about the state of a pipeline, including the stages and actions.",
+            "title": "GetPipelineState",
             "description": "Returns information about the state of a pipeline, including the stages and actions.",
             "fields": {
                 "verbose": {
@@ -276,8 +276,8 @@
         },
         "GetThirdPartyJobDetails": {
             "main": "./lib/actions/GetThirdPartyJobDetails.js",
-            "title": "<p>Requests the details of a job for a third party action. Only used for partner actions.</p> <important> <p>When this API is called, AWS CodePipeline returns temporary credentials for the Amazon S3 bucket used to store artifacts for the pipeline, if the action requires access to that Amazon S3 bucket for input or output artifacts. Additionally, this API returns any secret values defined for the action.</p> </important>",
-            "description": "<p>Requests the details of a job for a third party action. Only used for partner actions.</p> <important> <p>When this API is called, AWS CodePipeline returns temporary credentials for the Amazon S3 bucket used to store artifacts for the pipeline, if the action requires access to that Amazon S3 bucket for input or output artifacts. Additionally, this API returns any secret values defined for the action.</p> </important>",
+            "title": "GetThirdPartyJobDetails",
+            "description": "Requests the details of a job for a third party action. Only used for partner\nactions.\n\nWhen this API is called, AWS CodePipeline returns temporary credentials for the\nAmazon S3 bucket used to store artifacts for the pipeline, if the action\nrequires access to that Amazon S3 bucket for input or output artifacts.\nAdditionally, this API returns any secret values defined for the action.",
             "fields": {
                 "verbose": {
                     "viewClass": "CheckBoxView",
@@ -293,7 +293,7 @@
         },
         "ListActionTypes": {
             "main": "./lib/actions/ListActionTypes.js",
-            "title": "Gets a summary of all AWS CodePipeline action types associated with your account.",
+            "title": "ListActionTypes",
             "description": "Gets a summary of all AWS CodePipeline action types associated with your account.",
             "fields": {
                 "verbose": {
@@ -310,7 +310,7 @@
         },
         "ListPipelineExecutions": {
             "main": "./lib/actions/ListPipelineExecutions.js",
-            "title": "Gets a summary of the most recent executions for a pipeline.",
+            "title": "ListPipelineExecutions",
             "description": "Gets a summary of the most recent executions for a pipeline.",
             "fields": {
                 "verbose": {
@@ -327,7 +327,7 @@
         },
         "ListPipelines": {
             "main": "./lib/actions/ListPipelines.js",
-            "title": "Gets a summary of all of the pipelines associated with your account.",
+            "title": "ListPipelines",
             "description": "Gets a summary of all of the pipelines associated with your account.",
             "fields": {
                 "verbose": {
@@ -344,7 +344,7 @@
         },
         "ListWebhooks": {
             "main": "./lib/actions/ListWebhooks.js",
-            "title": "Gets a listing of all the webhooks in this region for this account. The output lists all webhooks and includes the webhook URL and ARN, as well the configuration for each webhook.",
+            "title": "ListWebhooks",
             "description": "Gets a listing of all the webhooks in this region for this account. The output lists all webhooks and includes the webhook URL and ARN, as well the configuration for each webhook.",
             "fields": {
                 "verbose": {
@@ -361,8 +361,8 @@
         },
         "PollForJobs": {
             "main": "./lib/actions/PollForJobs.js",
-            "title": "<p>Returns information about any jobs for AWS CodePipeline to act upon. PollForJobs is only valid for action types with \"Custom\" in the owner field. If the action type contains \"AWS\" or \"ThirdParty\" in the owner field, the PollForJobs action returns an error.</p> <important> <p>When this API is called, AWS CodePipeline returns temporary credentials for the Amazon S3 bucket used to store artifacts for the pipeline, if the action requires access to that Amazon S3 bucket for input or output artifacts. Additionally, this API returns any secret values defined for the action.</p> </important>",
-            "description": "<p>Returns information about any jobs for AWS CodePipeline to act upon. PollForJobs is only valid for action types with \"Custom\" in the owner field. If the action type contains \"AWS\" or \"ThirdParty\" in the owner field, the PollForJobs action returns an error.</p> <important> <p>When this API is called, AWS CodePipeline returns temporary credentials for the Amazon S3 bucket used to store artifacts for the pipeline, if the action requires access to that Amazon S3 bucket for input or output artifacts. Additionally, this API returns any secret values defined for the action.</p> </important>",
+            "title": "PollForJobs",
+            "description": "Returns information about any jobs for AWS CodePipeline to act upon. PollForJobs\nis only valid for action types with \"Custom\" in the owner field. If the action\ntype contains \"AWS\" or \"ThirdParty\" in the owner field, the PollForJobs action\nreturns an error.\n\nWhen this API is called, AWS CodePipeline returns temporary credentials for the\nAmazon S3 bucket used to store artifacts for the pipeline, if the action\nrequires access to that Amazon S3 bucket for input or output artifacts.\nAdditionally, this API returns any secret values defined for the action.",
             "fields": {
                 "verbose": {
                     "viewClass": "CheckBoxView",
@@ -378,8 +378,8 @@
         },
         "PollForThirdPartyJobs": {
             "main": "./lib/actions/PollForThirdPartyJobs.js",
-            "title": "<p>Determines whether there are any third party jobs for a job worker to act on. Only used for partner actions.</p> <important> <p>When this API is called, AWS CodePipeline returns temporary credentials for the Amazon S3 bucket used to store artifacts for the pipeline, if the action requires access to that Amazon S3 bucket for input or output artifacts.</p> </important>",
-            "description": "<p>Determines whether there are any third party jobs for a job worker to act on. Only used for partner actions.</p> <important> <p>When this API is called, AWS CodePipeline returns temporary credentials for the Amazon S3 bucket used to store artifacts for the pipeline, if the action requires access to that Amazon S3 bucket for input or output artifacts.</p> </important>",
+            "title": "PollForThirdPartyJobs",
+            "description": "Determines whether there are any third party jobs for a job worker to act on.\nOnly used for partner actions.\n\nWhen this API is called, AWS CodePipeline returns temporary credentials for the\nAmazon S3 bucket used to store artifacts for the pipeline, if the action\nrequires access to that Amazon S3 bucket for input or output artifacts.",
             "fields": {
                 "verbose": {
                     "viewClass": "CheckBoxView",
@@ -395,7 +395,7 @@
         },
         "PutActionRevision": {
             "main": "./lib/actions/PutActionRevision.js",
-            "title": "Provides information to AWS CodePipeline about new revisions to a source.",
+            "title": "PutActionRevision",
             "description": "Provides information to AWS CodePipeline about new revisions to a source.",
             "fields": {
                 "verbose": {
@@ -412,7 +412,7 @@
         },
         "PutApprovalResult": {
             "main": "./lib/actions/PutApprovalResult.js",
-            "title": "Provides the response to a manual approval request to AWS CodePipeline. Valid responses include Approved and Rejected.",
+            "title": "PutApprovalResult",
             "description": "Provides the response to a manual approval request to AWS CodePipeline. Valid responses include Approved and Rejected.",
             "fields": {
                 "verbose": {
@@ -429,7 +429,7 @@
         },
         "PutJobFailureResult": {
             "main": "./lib/actions/PutJobFailureResult.js",
-            "title": "Represents the failure of a job as returned to the pipeline by a job worker. Only used for custom actions.",
+            "title": "PutJobFailureResult",
             "description": "Represents the failure of a job as returned to the pipeline by a job worker. Only used for custom actions.",
             "fields": {
                 "verbose": {
@@ -446,7 +446,7 @@
         },
         "PutJobSuccessResult": {
             "main": "./lib/actions/PutJobSuccessResult.js",
-            "title": "Represents the success of a job as returned to the pipeline by a job worker. Only used for custom actions.",
+            "title": "PutJobSuccessResult",
             "description": "Represents the success of a job as returned to the pipeline by a job worker. Only used for custom actions.",
             "fields": {
                 "verbose": {
@@ -463,7 +463,7 @@
         },
         "PutThirdPartyJobFailureResult": {
             "main": "./lib/actions/PutThirdPartyJobFailureResult.js",
-            "title": "Represents the failure of a third party job as returned to the pipeline by a job worker. Only used for partner actions.",
+            "title": "PutThirdPartyJobFailureResult",
             "description": "Represents the failure of a third party job as returned to the pipeline by a job worker. Only used for partner actions.",
             "fields": {
                 "verbose": {
@@ -480,7 +480,7 @@
         },
         "PutThirdPartyJobSuccessResult": {
             "main": "./lib/actions/PutThirdPartyJobSuccessResult.js",
-            "title": "Represents the success of a third party job as returned to the pipeline by a job worker. Only used for partner actions.",
+            "title": "PutThirdPartyJobSuccessResult",
             "description": "Represents the success of a third party job as returned to the pipeline by a job worker. Only used for partner actions.",
             "fields": {
                 "verbose": {
@@ -497,7 +497,7 @@
         },
         "PutWebhook": {
             "main": "./lib/actions/PutWebhook.js",
-            "title": "Defines a webhook and returns a unique webhook URL generated by CodePipeline. This URL can be supplied to third party source hosting providers to call every time there's a code change. When CodePipeline receives a POST request on this URL, the pipeline defined in the webhook is started as long as the POST request satisfied the authentication and filtering requirements supplied when defining the webhook. RegisterWebhookWithThirdParty and DeregisterWebhookWithThirdParty APIs can be used to automatically configure supported third parties to call the generated webhook URL.",
+            "title": "PutWebhook",
             "description": "Defines a webhook and returns a unique webhook URL generated by CodePipeline. This URL can be supplied to third party source hosting providers to call every time there's a code change. When CodePipeline receives a POST request on this URL, the pipeline defined in the webhook is started as long as the POST request satisfied the authentication and filtering requirements supplied when defining the webhook. RegisterWebhookWithThirdParty and DeregisterWebhookWithThirdParty APIs can be used to automatically configure supported third parties to call the generated webhook URL.",
             "fields": {
                 "verbose": {
@@ -514,7 +514,7 @@
         },
         "RegisterWebhookWithThirdParty": {
             "main": "./lib/actions/RegisterWebhookWithThirdParty.js",
-            "title": "Configures a connection between the webhook that was created and the external tool with events to be detected.",
+            "title": "RegisterWebhookWithThirdParty",
             "description": "Configures a connection between the webhook that was created and the external tool with events to be detected.",
             "fields": {
                 "verbose": {
@@ -531,7 +531,7 @@
         },
         "RetryStageExecution": {
             "main": "./lib/actions/RetryStageExecution.js",
-            "title": "Resumes the pipeline execution by retrying the last failed actions in a stage.",
+            "title": "RetryStageExecution",
             "description": "Resumes the pipeline execution by retrying the last failed actions in a stage.",
             "fields": {
                 "verbose": {
@@ -548,7 +548,7 @@
         },
         "StartPipelineExecution": {
             "main": "./lib/actions/StartPipelineExecution.js",
-            "title": "Starts the specified pipeline. Specifically, it begins processing the latest commit to the source location specified as part of the pipeline.",
+            "title": "StartPipelineExecution",
             "description": "Starts the specified pipeline. Specifically, it begins processing the latest commit to the source location specified as part of the pipeline.",
             "fields": {
                 "verbose": {
@@ -565,7 +565,7 @@
         },
         "UpdatePipeline": {
             "main": "./lib/actions/UpdatePipeline.js",
-            "title": "Updates a specified pipeline with edits or changes to its structure. Use a JSON file with the pipeline structure in conjunction with UpdatePipeline to provide the full structure of the pipeline. Updating the pipeline increases the version number of the pipeline by 1.",
+            "title": "UpdatePipeline",
             "description": "Updates a specified pipeline with edits or changes to its structure. Use a JSON file with the pipeline structure in conjunction with UpdatePipeline to provide the full structure of the pipeline. Updating the pipeline increases the version number of the pipeline by 1.",
             "fields": {
                 "verbose": {
